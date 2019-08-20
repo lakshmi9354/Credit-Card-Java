@@ -56,6 +56,5 @@ private static final long serialVersionUID = 7771935079393339853L;
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 	
 }
