@@ -8,4 +8,6 @@ import com.ing.creditcardpayment.entity.CreditCard;
 @Repository
 public interface CreditCardRepository extends JpaRepository<CreditCard, Integer> {
 
+	public CreditCard findBycreditCardNumber(Long creditCardNumber);
+	
 }
