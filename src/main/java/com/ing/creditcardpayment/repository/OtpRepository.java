@@ -8,4 +8,6 @@ import com.ing.creditcardpayment.entity.Otp;
 @Repository
 public interface OtpRepository extends JpaRepository<Otp, Integer> {
 
+	public Otp findByotpNo(int otpNo);
+	
 }

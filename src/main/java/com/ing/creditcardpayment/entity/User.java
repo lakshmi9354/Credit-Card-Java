@@ -2,6 +2,7 @@ package com.ing.creditcardpayment.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table
+@Entity
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 7771935079393339853L;

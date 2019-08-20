@@ -11,7 +11,24 @@ public class StatementDto {
 	private Date transactionDate;
 	private String reason;
 	private String transactionStatus;
+	private Date FromDate;
+	private Date ToDate;
 	
+	
+	
+	
+	public Date getFromDate() {
+		return FromDate;
+	}
+	public void setFromDate(Date fromDate) {
+		FromDate = fromDate;
+	}
+	public Date getToDate() {
+		return ToDate;
+	}
+	public void setToDate(Date toDate) {
+		ToDate = toDate;
+	}
 	public Long getCreditCardNumber() {
 		return creditCardNumber;
 	}
@@ -48,5 +65,5 @@ public class StatementDto {
 	public void setTransactionStatus(String transactionStatus) {
 		this.transactionStatus = transactionStatus;
 	}
-
+	
 }
