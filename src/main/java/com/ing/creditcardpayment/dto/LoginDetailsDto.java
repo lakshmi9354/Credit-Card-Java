@@ -11,4 +11,5 @@ public class LoginDetailsDto {
 	private String message;
 	private Integer userId;
 	private String status;
+	
 }
