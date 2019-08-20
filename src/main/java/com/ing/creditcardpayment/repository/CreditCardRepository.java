@@ -9,5 +9,7 @@ import com.ing.creditcardpayment.entity.CreditCard;
 public interface CreditCardRepository extends JpaRepository<CreditCard, Integer> {
 
 	public CreditCard findBycreditCardNumber(Long creditCardNumber);
+
+	public CreditCard findByUserIdAndCreditCardNumber(int userId, Long creditCardNumber);
 	
 }

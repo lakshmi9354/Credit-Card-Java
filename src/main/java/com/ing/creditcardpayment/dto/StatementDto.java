@@ -11,6 +11,7 @@ public class StatementDto {
 	private Date transactionDate;
 	private String reason;
 	private String transactionStatus;
+	private String cardType;
 	
 	public Long getCreditCardNumber() {
 		return creditCardNumber;
@@ -48,5 +49,13 @@ public class StatementDto {
 	public void setTransactionStatus(String transactionStatus) {
 		this.transactionStatus = transactionStatus;
 	}
+	public String getCardType() {
+		return cardType;
+	}
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
+	}
+	
+	
 
 }

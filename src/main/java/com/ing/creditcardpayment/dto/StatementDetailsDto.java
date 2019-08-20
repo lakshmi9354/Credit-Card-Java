@@ -14,5 +14,6 @@ public class StatementDetailsDto {
 	private String transactionType;
 	private Date transactionDate;
 	private String reason;
+	private String message;
 	}
 
