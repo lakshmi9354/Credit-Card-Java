@@ -2,9 +2,7 @@ package com.ing.creditcardpayment.exception;
 
 import java.io.Serializable;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class ErrorReponse implements Serializable{

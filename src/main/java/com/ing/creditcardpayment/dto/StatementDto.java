@@ -1,75 +1,20 @@
 package com.ing.creditcardpayment.dto;
 
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Setter
+@Getter
+@ToString
 public class StatementDto {
 
 	
 	private Long creditCardNumber;
 	private Double amount;
 	private String transactionType;
-	private Date transactionDate;
+	private String expiryDate;
 	private String reason;
-	private String transactionStatus;
 	private String cardType;
-	private Date FromDate;
-	private Date ToDate;
 	
-	
-	
-	
-	public Date getFromDate() {
-		return FromDate;
-	}
-	public void setFromDate(Date fromDate) {
-		FromDate = fromDate;
-	}
-	public Date getToDate() {
-		return ToDate;
-	}
-	public void setToDate(Date toDate) {
-		ToDate = toDate;
-	}
-	public Long getCreditCardNumber() {
-		return creditCardNumber;
-	}
-	public void setCreditCardNumber(Long creditCardNumber) {
-		this.creditCardNumber = creditCardNumber;
-	}
-	public Double getAmount() {
-		return amount;
-	}
-	public void setAmount(Double amount) {
-		this.amount = amount;
-	}
-	public String getTransactionType() {
-		return transactionType;
-	}
-	public void setTransactionType(String transactionType) {
-		this.transactionType = transactionType;
-	}
-	public Date getTransactionDate() {
-		return transactionDate;
-	}
-	public void setTransactionDate(Date transactionDate) {
-		this.transactionDate = transactionDate;
-	}
-	public String getReason() {
-		return reason;
-	}
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
-	public String getTransactionStatus() {
-		return transactionStatus;
-	}
-	public void setTransactionStatus(String transactionStatus) {
-		this.transactionStatus = transactionStatus;
-	}
-	public String getCardType() {
-		return cardType;
-	}
-	public void setCardType(String cardType) {
-		this.cardType = cardType;
-	}
 }

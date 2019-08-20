@@ -17,11 +17,4 @@ public class ResponseDto {
 		this.message = message;
 	}
 
-	public ResponseDto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-
 }

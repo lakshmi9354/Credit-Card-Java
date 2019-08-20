@@ -11,7 +11,6 @@ import com.ing.creditcardpayment.dto.StatementDetailsDto;
 import com.ing.creditcardpayment.dto.StatementsDto;
 import com.ing.creditcardpayment.entity.CreditCard;
 import com.ing.creditcardpayment.entity.Statement;
-import com.ing.creditcardpayment.exception.CreditCardNotFound;
 import com.ing.creditcardpayment.repository.CreditCardRepository;
 import com.ing.creditcardpayment.repository.StatementRepository;
 
@@ -24,11 +23,16 @@ public class StatementServiceImpl implements StatementService {
 	CreditCardRepository creditCardRepository;
 
 	@Override
-	public List<StatementDetailsDto> history(StatementsDto statementDto) throws CreditCardNotFound {
+	public List<StatementDetailsDto> history(StatementsDto statementDto){
 		List<StatementDetailsDto> statementDetailsDtos = new ArrayList<>();
-		CreditCard creditCard = creditCardRepository.findByUserIdAndCreditCardNumber(statementDto.getUserId(),
+		List<CreditCard> creditCard = creditCardRepository.findByUserIdAndCreditCardNumber(statementDto.getUserId(),
 				statementDto.getCreditCardNumber());
-		if (creditCard.getUserId() != 0) {
+		String bank=null;
+		for(CreditCard card:creditCard)
+		{
+			bank=card.getBankName();
+		}
+		if (bank!=null) {
 			List<Statement> statements = statementRepository.findHistory(statementDto.getFromDate(),
 					statementDto.getToDate(), statementDto.getCreditCardNumber());
 			for (Statement statement : statements) {

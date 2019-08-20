@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ing.creditcardpayment.dto.StatementDetailsDto;
 import com.ing.creditcardpayment.dto.StatementsDto;
-import com.ing.creditcardpayment.exception.CreditCardNotFound;
 import com.ing.creditcardpayment.service.StatementService;
 
 @RestController
@@ -24,7 +23,7 @@ public class StatementController {
 	StatementService statementService;
 
 	@PostMapping("/statement")
-	public ResponseEntity<List<StatementDetailsDto>> transactionHistory(@RequestBody StatementsDto statementDto) throws CreditCardNotFound {
+	public ResponseEntity<List<StatementDetailsDto>> transactionHistory(@RequestBody StatementsDto statementDto){
 		List<StatementDetailsDto> response = statementService.history(statementDto);
 		return new ResponseEntity<List<StatementDetailsDto>>(response, HttpStatus.OK);
 	}

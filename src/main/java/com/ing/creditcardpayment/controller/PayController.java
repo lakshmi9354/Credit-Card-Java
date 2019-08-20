@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ing.creditcardpayment.dto.ResponseDto;
 import com.ing.creditcardpayment.dto.StatementDto;
-import com.ing.creditcardpayment.entity.Otp;
 import com.ing.creditcardpayment.service.PayService;
 
 @RestController
@@ -28,7 +27,7 @@ public class PayController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(PayController.class);
 	
-	@PostMapping("/paymentMaster")
+	@PostMapping("/payment")
 	public ResponseEntity<ResponseDto> addPayment(@RequestBody StatementDto statementDto)
 	{
 		LOGGER.info("enntered into add payment controller");

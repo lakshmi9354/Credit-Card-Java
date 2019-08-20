@@ -1,5 +1,6 @@
 package com.ing.creditcardpayment.service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -49,27 +50,35 @@ public class PayServiceImpl implements PayService {
 		statement.setTransactionStatus("Pending");
 
 		CreditCard creditCardDetails = creditRepository.findBycreditCardNumber(statementDto.getCreditCardNumber());
+		Date d = creditCardDetails.getExpiryDate();
+		SimpleDateFormat format = new SimpleDateFormat("MM/yy");
+		String valid = format.format(d);		
 		Optional<User> userDetails = userRepository.findById(creditCardDetails.getUserId());
 		if (userDetails.get().getUserId() == creditCardDetails.getUserId()) {
-			if (creditCardDetails.getCreditCardNumber().equals(statementDto.getCreditCardNumber()) ){
-				if (statementDto.getCardType().equalsIgnoreCase("visa")) {
-					emailService.sendEmail(otp, userDetails.get().getEmail());
-					Otp otpData = new Otp();
-					otpData.setDate(date);
-					otpData.setCreditCardId(creditCardDetails.getCreditCardId());
-					otpData.setOtpNo(Integer.parseInt(otp));
-					otpData.setStatus("pending");
-					otpRepository.save(otpData);
-					statementRepository.save(statement);
-				} else if (statementDto.getCardType().equalsIgnoreCase("master")) {
-					emailService.sendEmail(otp, userDetails.get().getEmail());
-					Otp otpData = new Otp();
-					otpData.setDate(date);
-					otpData.setCreditCardId(creditCardDetails.getCreditCardId());
-					otpData.setOtpNo(Integer.parseInt(otp));
-					otpData.setStatus("pending");
-					otpRepository.save(otpData);
-					statementRepository.save(statement);
+			if (creditCardDetails.getCreditCardNumber().equals(statementDto.getCreditCardNumber())) {
+				if (valid.equals(statementDto.getExpiryDate())) {
+					if (statementDto.getCardType().equalsIgnoreCase("visa")) {
+						emailService.sendEmail(otp, userDetails.get().getEmail());
+						Otp otpData = new Otp();
+						otpData.setDate(date);
+						otpData.setCreditCardId(creditCardDetails.getCreditCardId());
+						otpData.setOtpNo(Integer.parseInt(otp));
+						otpData.setStatus("pending");
+						otpRepository.save(otpData);
+						statementRepository.save(statement);
+					} else if (statementDto.getCardType().equalsIgnoreCase("master")) {
+						emailService.sendEmail(otp, userDetails.get().getEmail());
+						Otp otpData = new Otp();
+						otpData.setDate(date);
+						otpData.setCreditCardId(creditCardDetails.getCreditCardId());
+						otpData.setOtpNo(Integer.parseInt(otp));
+						otpData.setStatus("pending");
+						otpRepository.save(otpData);
+						statementRepository.save(statement);
+					}
+				}
+				else{
+					return new ResponseDto("Enter Valid Expiry Date");
 				}
 
 			} else {
@@ -82,26 +91,24 @@ public class PayServiceImpl implements PayService {
 
 	}
 
-
-
 	public ResponseDto verifyOtp(int otpNo) {
 		Otp otpDetails = otpRepository.findByotpNo(otpNo);
 		Optional<Statement> statementDetails = statementRepository.findById(otpDetails.getCreditCardId());
-		//creditCardId
-		if(otpDetails.getOtpNo() == otpNo)
-		{
+		// creditCardId
+		if (otpDetails.getOtpNo() == otpNo) {
 			Otp otp = new Otp();
 			otp.setOtpId(otpDetails.getOtpId());
 			otp.setStatus("success");
 			otpRepository.save(otp);
-			
-			Statement statement = new Statement();
-			statement.setTransactionStatus("success");
-			statement.setStatementId(statementDetails.get().getStatementId());
-			statementRepository.save(statement);
+			if(statementDetails.isPresent())
+			{
+				Statement statement = new Statement();
+				statement.setTransactionStatus("success");
+				statement.setStatementId(statementDetails.get().getStatementId());
+				statementRepository.save(statement);
+			}
 			return new ResponseDto("OTP verified successfully");
-		}else
-		{
+		} else {
 			return new ResponseDto("OTP Is Wrong");
 		}
 	}
