@@ -5,19 +5,13 @@ import java.util.Date;
 public class StatementDto {
 
 	
-	private int statementId;
 	private Long creditCardNumber;
 	private Double amount;
 	private String transactionType;
 	private Date transactionDate;
 	private String reason;
 	private String transactionStatus;
-	public int getStatementId() {
-		return statementId;
-	}
-	public void setStatementId(int statementId) {
-		this.statementId = statementId;
-	}
+	
 	public Long getCreditCardNumber() {
 		return creditCardNumber;
 	}
