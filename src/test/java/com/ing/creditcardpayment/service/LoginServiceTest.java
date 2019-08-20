@@ -48,7 +48,7 @@ public class LoginServiceTest {
 	@Test
 	public void loginSuccessTest() {
 		Mockito.when(userRepository.findByMobileNoAndPassword("961833", "lak")).thenReturn(user);
-		assertEquals(loginDetailsDto1.toString(), loginService.login(loginDto).toString());
+		assertEquals(loginDetailsDto.toString(), loginService.login(loginDto).toString());
 	}
 	
 	@Test

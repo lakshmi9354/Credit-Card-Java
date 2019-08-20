@@ -37,7 +37,7 @@ public class PayController {
 	@PostMapping("/otpVerification")
 	public ResponseEntity<ResponseDto> verifyOtp(@RequestParam(value = "otpNo") int otpNo)
 	{
-		return new ResponseEntity<ResponseDto>(HttpStatus.OK);
+		return new ResponseEntity<ResponseDto>(payService.verifyOtp(otpNo),HttpStatus.OK);
 	}
 
 }
