@@ -16,4 +16,6 @@ public interface StatementRepository extends JpaRepository<Statement, Integer> {
 
 	List<Statement> findHistory(@Param("fromdate")Date fromDate,@Param("todate") Date toDate, Long creditCardNumber);
 
+	List<Statement> findHistory(Date fromDate, Date toDate, Long creditCardNumber);
+
 }

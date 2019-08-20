@@ -82,4 +82,28 @@ public class PayServiceImpl implements PayService {
 
 	}
 
+
+
+	public ResponseDto verifyOtp(int otpNo) {
+		Otp otpDetails = otpRepository.findByotpNo(otpNo);
+		Optional<Statement> statementDetails = statementRepository.findById(otpDetails.getCreditCardId());
+		//creditCardId
+		if(otpDetails.getOtpNo() == otpNo)
+		{
+			Otp otp = new Otp();
+			otp.setOtpId(otpDetails.getOtpId());
+			otp.setStatus("success");
+			otpRepository.save(otp);
+			
+			Statement statement = new Statement();
+			statement.setTransactionStatus("success");
+			statement.setStatementId(statementDetails.get().getStatementId());
+			statementRepository.save(statement);
+			return new ResponseDto("OTP verified successfully");
+		}else
+		{
+			return new ResponseDto("OTP Is Wrong");
+		}
+	}
+
 }

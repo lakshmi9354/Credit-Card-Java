@@ -12,7 +12,24 @@ public class StatementDto {
 	private String reason;
 	private String transactionStatus;
 	private String cardType;
+	private Date FromDate;
+	private Date ToDate;
 	
+	
+	
+	
+	public Date getFromDate() {
+		return FromDate;
+	}
+	public void setFromDate(Date fromDate) {
+		FromDate = fromDate;
+	}
+	public Date getToDate() {
+		return ToDate;
+	}
+	public void setToDate(Date toDate) {
+		ToDate = toDate;
+	}
 	public Long getCreditCardNumber() {
 		return creditCardNumber;
 	}
@@ -55,7 +72,4 @@ public class StatementDto {
 	public void setCardType(String cardType) {
 		this.cardType = cardType;
 	}
-	
-	
-
 }

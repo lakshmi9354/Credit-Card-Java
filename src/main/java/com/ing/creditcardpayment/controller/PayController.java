@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ing.creditcardpayment.dto.ResponseDto;
 import com.ing.creditcardpayment.dto.StatementDto;
+import com.ing.creditcardpayment.entity.Otp;
 import com.ing.creditcardpayment.service.PayService;
 
 @RestController
@@ -31,6 +33,12 @@ public class PayController {
 	{
 		LOGGER.info("enntered into add payment controller");
 		return new ResponseEntity<ResponseDto>(payService.addTransaction(statementDto),HttpStatus.OK);
+	}
+	
+	@PostMapping("/otpVerification")
+	public ResponseEntity<ResponseDto> verifyOtp(@RequestParam(value = "otpNo") int otpNo)
+	{
+		return new ResponseEntity<ResponseDto>(HttpStatus.OK);
 	}
 
 }

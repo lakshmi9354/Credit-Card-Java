@@ -23,6 +23,7 @@ private static final long serialVersionUID = 7771935079393339853L;
 	private Date date;
 	private String status;
 	private int creditCardId;
+	
 	public int getOtpId() {
 		return otpId;
 	}
